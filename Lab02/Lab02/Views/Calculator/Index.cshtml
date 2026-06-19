@@ -1,0 +1,28 @@
+﻿@{
+	ViewData["Title"] = "Index";
+}
+
+<h1>Máy tính cá nhân</h1>
+<form asp-action="Calculate" asp-controller="Calculator">
+	<div>
+		<input type="number" name="SoHang01" value="@ViewBag.SoHang01" />
+		<select id="operation" name="operation">
+			<option value="add">+</option>
+			<option value="subtract">-</option>
+			<option value="multiply">x</option>
+			<option value="divide">/</option>
+			<option value="mod">%</option>
+			<option value="exp">^</option>
+		</select>
+		<input type="number" name="SoHang02" value="@ViewBag.SoHang02" />
+		<button type="submit">=</button>
+		<span class="bg-primary text-danger">@ViewBag.Result</span>
+	</div>
+</form>
+@section Scripts {
+	<script>
+		$(document).ready(function () {
+			$('#operation').val('@ViewBag.Operation');
+		});
+	</script>
+}
