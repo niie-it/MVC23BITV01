@@ -11,7 +11,6 @@
 </p>
 <table class="table">
 	<thead>
-		
 	</thead>
 	<tbody>
 		@foreach (var item in Model)
@@ -27,19 +26,35 @@
 					@Html.DisplayFor(modelItem => item.Credits)
 				</td>
 				<td>
-					@Html.DisplayFor(modelItem => item.TheoryHours)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.PracticeHours)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.TotalHours)
+					@item.TotalHours (@item.TheoryHours LT + @item.PracticeHours TH)
 				</td>
 				<td>
 					<a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
-					<a asp-action="Delete" asp-route-id="@item.Id" class="btn-danger btn">Delete</a>
+					<button type="button" class="btn-danger btn" onclick="confirmDeleteCourse(@item.Id, '@item.Name');">Delete</button>
 				</td>
 			</tr>
 		}
 	</tbody>
 </table>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+	function confirmDeleteCourse(courseId, name){
+	//alert("Dang chọn xóa " + courseId);
+	Swal.fire({
+		title: `<strong>Xóa <u>${name}</u></strong>`,
+		icon: "warning",
+		html: "Bạn chắc xóa không?",
+		showCloseButton: true,
+		showCancelButton: true,
+		focusConfirm: false,
+		confirmButtonText: `
+		<i class="fa fa-thumbs-up"></i> Great!
+		`,
+		confirmButtonAriaLabel: "Xóa ngay",
+		cancelButtonText: `
+		<i class="fa fa-thumbs-down"></i>
+		`,
+		cancelButtonAriaLabel: "Thumbs down"
+		});
+	}
+</script>
