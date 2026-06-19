@@ -1,0 +1,45 @@
+﻿@model List<Lab02.Models.Course>
+
+@{
+	ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+	<a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+	<thead>
+		
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@item.Id
+				</td>
+				<td>
+					@item.Name
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Credits)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.TheoryHours)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.PracticeHours)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.TotalHours)
+				</td>
+				<td>
+					<a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
+					<a asp-action="Delete" asp-route-id="@item.Id" class="btn-danger btn">Delete</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
