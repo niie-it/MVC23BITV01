@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 using System.ComponentModel.DataAnnotations;
 using System.Net;
 
@@ -13,6 +14,7 @@ namespace Buoi04_Validation.Models
         public int? ID { get; set; }
 
         [Length(5, 20, ErrorMessage = "Mã nhân viên phải có độ dài từ 5 đến 20 ký tự")]
+        [Remote(action: "CheckEmployeeNo", controller: "Employee", ErrorMessage = "Mã nhân viên đã tồn tại")]
         public string EmployeeNo { get; set; }
 
         [MaxLength(100, ErrorMessage = "Họ tên không được vượt quá 100 ký tự")]
@@ -31,6 +33,7 @@ namespace Buoi04_Validation.Models
         public string? Website { get; set; }
 
         [DataType(DataType.Date)]
+        [TuoiLamViec]
         public DateTime BirthDate { get; set; }
 
         public Gender Gender { get; set; } = Gender.Nam;
