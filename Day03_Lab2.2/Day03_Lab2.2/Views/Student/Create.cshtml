@@ -1,0 +1,54 @@
+﻿@model Day03_Lab2._2.Models.Student
+
+@{
+	ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Student</h4>
+<hr />
+<div class="row">
+	<div class="col-md-12">
+		<form asp-action="Create">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<div class="form-group">
+				<label asp-for="Id" class="control-label"></label>
+				<input asp-for="Id" class="form-control" />
+				<span asp-validation-for="Id" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Name" class="control-label"></label>
+				<input asp-for="Name" class="form-control" />
+				<span asp-validation-for="Name" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Image" class="control-label"></label>
+				<input asp-for="Image" class="form-control" />
+				<span asp-validation-for="Image" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Score" class="control-label"></label>
+				<input asp-for="Score" class="form-control" />
+				<span asp-validation-for="Score" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<input type="submit" name="btnSave" value="Save JSON" class="btn btn-primary" />
+				<input type="submit" name="btnSave" value="Save TEXT" class="btn btn-secondary" />
+				<a asp-action="ReadInfo" asp-route-type="json" class="btn btn-info">
+					Read from JSON
+				</a>
+				<a asp-action="ReadInfo" asp-route-type="text" class="btn btn-danger">
+					Read from TXT
+				</a>
+			</div>
+		</form>
+	</div>
+</div>
+
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}
