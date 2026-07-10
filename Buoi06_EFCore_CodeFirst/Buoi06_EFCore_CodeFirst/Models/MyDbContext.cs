@@ -11,5 +11,8 @@ namespace Buoi06_EFCore_CodeFirst.Models
         //Định nghĩa bảng
         public DbSet<HangHoa> HangHoas { get; set; }
         public DbSet<Loai> Loais { get; set; }
+        public DbSet<KhachHang> KhachHangs { get; set; }
+        public DbSet<HoaDon> HoaDons { get; set; }
+        public DbSet<ChiTietHoaDon> ChiTietHoaDons { get; set; }
     }
 }

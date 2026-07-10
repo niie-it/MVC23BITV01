@@ -91,11 +91,20 @@ namespace Buoi06_EFCore_CodeFirst.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MaHh,TenHh,DonGia,SoLuong,Hinh,MaLoai")] HangHoa hangHoa)
+        public async Task<IActionResult> Edit(int id, [Bind("MaHh,TenHh,DonGia,SoLuong,Hinh,MaLoai")] HangHoa hangHoa, IFormFile HinhEdit)
         {
             if (id != hangHoa.MaHh)
             {
                 return NotFound();
+            }
+
+            if (HinhEdit != null)
+            {
+                var urlTmp = await MyTool.UploadFileToFolder(HinhEdit, "products");
+                if (!string.IsNullOrEmpty(urlTmp))
+                {
+                    hangHoa.Hinh = urlTmp;
+                }
             }
 
             if (ModelState.IsValid)
